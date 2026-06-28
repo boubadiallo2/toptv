@@ -1,7 +1,16 @@
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 
-const mockCategories = [
+type Category = {
+  id?: string;
+  name: string;
+  slug: string;
+  color: string;
+  title?: string;
+  desc?: string;
+};
+
+const mockCategories: Category[] = [
   { name: 'Politique', slug: 'politique', color: '#1c4f82', title: 'La réforme budgétaire au cœur des débats parlementaires', desc: 'Le gouvernement présente son projet de loi de finances rectificatif devant l\'Ass...' },
   { name: 'Économie', slug: 'economie', color: '#7b1f24', title: 'L\'inflation recule pour le troisième mois consécutif', desc: 'Les chiffres confirment une tendance durable à la stabilisation des prix...' },
   { name: 'Sport', slug: 'sport', color: '#1f3e5a', title: 'Ligue des Champions : résultats des quarts de finale', desc: 'Découvrez tous les résultats et moments forts des matchs retour...' },
@@ -12,8 +21,8 @@ const mockCategories = [
 
 export default async function CategoryCards() {
   const { data: categories } = await supabase.from('categories').select('*');
-  const displayCategories = categories && categories.length > 0 
-    ? categories.map((cat: Record<string, unknown>, i: number) => ({
+  const displayCategories: Category[] = categories && categories.length > 0 
+    ? categories.map((cat: Category, i: number) => ({
         ...cat,
         title: mockCategories[i % mockCategories.length].title, // Mock article title since articles table is empty
         desc: mockCategories[i % mockCategories.length].desc
@@ -27,7 +36,7 @@ export default async function CategoryCards() {
       </div>
       
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '2rem' }}>
-        {displayCategories.map((cat: Record<string, unknown>, idx: number) => (
+        {displayCategories.map((cat: Category, idx: number) => (
           <div key={idx} style={{ display: 'flex', flexDirection: 'column' }}>
             <Link href={`/rubrique/${cat.slug}`}>
               <div className="hover-scale" style={{ backgroundColor: cat.color, aspectRatio: '3/2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', opacity: 0.9, borderRadius: '4px', marginBottom: '1rem' }}>
