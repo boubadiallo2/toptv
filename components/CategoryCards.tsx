@@ -13,7 +13,7 @@ const mockCategories = [
 export default async function CategoryCards() {
   const { data: categories } = await supabase.from('categories').select('*');
   const displayCategories = categories && categories.length > 0 
-    ? categories.map((cat: any, i: number) => ({
+    ? categories.map((cat: Record<string, unknown>, i: number) => ({
         ...cat,
         title: mockCategories[i % mockCategories.length].title, // Mock article title since articles table is empty
         desc: mockCategories[i % mockCategories.length].desc
@@ -27,7 +27,7 @@ export default async function CategoryCards() {
       </div>
       
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '2rem' }}>
-        {displayCategories.map((cat: any, idx: number) => (
+        {displayCategories.map((cat: Record<string, unknown>, idx: number) => (
           <div key={idx} style={{ display: 'flex', flexDirection: 'column' }}>
             <Link href={`/rubrique/${cat.slug}`}>
               <div className="hover-scale" style={{ backgroundColor: cat.color, aspectRatio: '3/2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', opacity: 0.9, borderRadius: '4px', marginBottom: '1rem' }}>

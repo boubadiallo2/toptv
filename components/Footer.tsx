@@ -9,7 +9,7 @@ export default function Footer() {
             <span style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '0 0.5rem', borderRadius: '4px', marginRight: '4px' }}>TOP</span>tv <span style={{ color: 'var(--primary)' }}>+</span>
           </h2>
           <p style={{ color: 'var(--muted)', fontSize: '0.9rem', lineHeight: 1.5 }}>
-            L'information de référence, rigoureuse et indépendante.
+            L&apos;information de référence, rigoureuse et indépendante.
           </p>
         </div>
         

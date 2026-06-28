@@ -24,7 +24,7 @@ export default function HeroSection() {
               </h2>
             </Link>
             <p style={{ fontSize: '1.1rem', color: 'var(--muted)', marginBottom: '1rem' }}>
-              Le gouvernement présente son projet de loi de finances rectificatif devant l'Assemblée nationale.
+              Le gouvernement présente son projet de loi de finances rectificatif devant l&apos;Assemblée nationale.
             </p>
             <p style={{ fontSize: '0.9rem' }}>
               <span className="text-primary" style={{ fontWeight: 'bold' }}>Marie Lefebvre</span> <span style={{ color: '#aaa', marginLeft: '1rem' }}>17 avril 2026</span>
@@ -37,7 +37,7 @@ export default function HeroSection() {
           <article>
             <span className="text-primary" style={{ fontSize: '0.8rem', fontWeight: 'bold', textTransform: 'uppercase' }}>Économie</span>
             <Link href="/article/inflation">
-              <h3 style={{ fontSize: '1.4rem', margin: '0.5rem 0' }}>L'inflation recule pour le troisième mois consécutif</h3>
+              <h3 style={{ fontSize: '1.4rem', margin: '0.5rem 0' }}>L&apos;inflation recule pour le troisième mois consécutif</h3>
             </Link>
             <p style={{ color: 'var(--muted)', fontSize: '0.95rem', marginBottom: '0.5rem' }}>
               Les chiffres confirment une tendance durable à la stabilisation des prix...
