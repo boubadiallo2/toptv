@@ -4,11 +4,11 @@ export default function Header() {
   return (
     <header>
       <div className="bg-dark top-bar">
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 1rem', fontSize: '1rem', fontWeight: 500 }}>
           <span>{new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <Link href="/admin">Administration</Link>
-            <Link href="/podcasts">Podcasts</Link>
+          <div style={{ display: 'flex', gap: '1.5rem' }}>
+            <Link href="/admin" className="nav-link">Administration</Link>
+            <Link href="/podcasts" className="nav-link">Podcasts</Link>
           </div>
         </div>
       </div>
@@ -19,12 +19,12 @@ export default function Header() {
               <span style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '0 0.5rem', borderRadius: '4px', marginRight: '4px' }}>TOP</span>tv <span style={{ color: 'var(--primary)' }}>+</span>
             </h1>
           </Link>
-          <nav style={{ display: 'flex', gap: '2rem', fontWeight: 500, fontSize: '0.9rem', textTransform: 'uppercase' }}>
-            <Link href="/" className="hover-scale">Accueil</Link>
-            <Link href="/rubriques" className="hover-scale">Rubriques ▾</Link>
-            <Link href="/videos" className="hover-scale">Vidéos</Link>
-            <Link href="/podcasts" className="hover-scale">Podcasts</Link>
-            <Link href="/publicite" className="text-primary hover-scale">Publicité</Link>
+          <nav style={{ display: 'flex', gap: '2rem', fontWeight: 600, fontSize: '1.1rem', textTransform: 'uppercase' }}>
+            <Link href="/" className="nav-link">Accueil</Link>
+            <Link href="/rubriques" className="nav-link">Rubriques ▾</Link>
+            <Link href="/videos" className="nav-link">Vidéos</Link>
+            <Link href="/podcasts" className="nav-link">Podcasts</Link>
+            <Link href="/publicite" className="text-primary nav-link">Publicité</Link>
           </nav>
         </div>
       </div>
