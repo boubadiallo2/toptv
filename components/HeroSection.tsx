@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Play } from 'lucide-react';
 
 export default function HeroSection() {
   return (
