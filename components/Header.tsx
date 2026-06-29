@@ -1,11 +1,27 @@
+"use client";
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
+  const [dateStr, setDateStr] = useState('');
+  const [timeStr, setTimeStr] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setDateStr(now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }));
+      setTimeStr(now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }));
+    };
+    updateTime(); // Initial update
+    const timer = setInterval(updateTime, 60000); // Update every minute
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <header>
       <div className="bg-dark top-bar">
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 1rem', fontSize: '0.8rem', fontWeight: 400, color: '#ccc' }}>
-          <span style={{ textTransform: 'capitalize' }}>{new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
+          <span style={{ textTransform: 'capitalize', minWidth: '200px' }}>{dateStr}</span>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             <Link href="/admin" className="nav-link">Administration</Link>
             <Link href="/podcasts" className="nav-link">Podcasts</Link>
@@ -41,7 +57,7 @@ export default function Header() {
         </div>
       </div>
       <div style={{ backgroundColor: '#e8e8e1', borderBottom: '1px solid #d0d0c8', textAlign: 'center', padding: '0.5rem', fontSize: '0.85rem', color: 'var(--primary)' }}>
-        <span style={{ textTransform: 'capitalize' }}>{new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span> — Mise à jour : {new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+        <span style={{ textTransform: 'capitalize' }}>{dateStr}</span> {timeStr && `— Mise à jour : ${timeStr}`}
       </div>
     </header>
   );
