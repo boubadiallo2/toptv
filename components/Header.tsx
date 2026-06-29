@@ -23,12 +23,25 @@ export default function Header() {
           </Link>
           <nav style={{ display: 'flex', gap: '2rem', fontWeight: 600, fontSize: '0.85rem', textTransform: 'uppercase', color: '#444', letterSpacing: '0.5px' }}>
             <Link href="/" className="nav-link">Accueil</Link>
-            <Link href="/rubriques" className="nav-link">Rubriques ▾</Link>
+            <div className="dropdown-container">
+              <span className="nav-link" style={{ paddingBottom: '1.5rem' }}>Rubriques ▾</span>
+              <div className="dropdown-menu" style={{ top: '100%', marginTop: '0.5rem' }}>
+                <Link href="/rubriques/politique" className="dropdown-item">Politique</Link>
+                <Link href="/rubriques/economie" className="dropdown-item">Économie</Link>
+                <Link href="/rubriques/sport" className="dropdown-item">Sport</Link>
+                <Link href="/rubriques/societe" className="dropdown-item">Société</Link>
+                <Link href="/rubriques/environnement" className="dropdown-item">Environnement</Link>
+                <Link href="/rubriques/culture" className="dropdown-item">Culture</Link>
+              </div>
+            </div>
             <Link href="/videos" className="nav-link">Vidéos</Link>
             <Link href="/podcasts" className="nav-link">Podcasts</Link>
             <Link href="/publicite" className="nav-link" style={{ color: 'var(--foreground)' }}>Publicité</Link>
           </nav>
         </div>
+      </div>
+      <div style={{ backgroundColor: '#e8e8e1', borderBottom: '1px solid #d0d0c8', textAlign: 'center', padding: '0.5rem', fontSize: '0.85rem', color: '#666' }}>
+        <span style={{ textTransform: 'capitalize' }}>{new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span> — Mise à jour : {new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
       </div>
     </header>
   );
