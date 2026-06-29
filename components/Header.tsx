@@ -40,7 +40,7 @@ export default function Header() {
           </nav>
         </div>
       </div>
-      <div style={{ backgroundColor: '#e8e8e1', borderBottom: '1px solid #d0d0c8', textAlign: 'center', padding: '0.5rem', fontSize: '0.85rem', color: '#666' }}>
+      <div style={{ backgroundColor: '#e8e8e1', borderBottom: '1px solid #d0d0c8', textAlign: 'center', padding: '0.5rem', fontSize: '0.85rem', color: 'var(--primary)' }}>
         <span style={{ textTransform: 'capitalize' }}>{new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span> — Mise à jour : {new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
       </div>
     </header>
