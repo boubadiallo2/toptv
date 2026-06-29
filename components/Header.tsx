@@ -13,10 +13,10 @@ export default function Header() {
         </div>
       </div>
       <div className="main-nav" style={{ backgroundColor: 'white', borderBottom: '1px solid var(--border)' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1rem' }}>
+        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.5rem 1rem' }}>
           <Link href="/">
-            <h1 style={{ fontSize: '2.2rem', fontWeight: 'bold', margin: 0, letterSpacing: '-1px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '0.1rem 0.8rem', borderRadius: '6px', fontStyle: 'italic' }}>TOP</span>
+            <h1 style={{ fontSize: '1.6rem', fontWeight: 'bold', margin: 0, letterSpacing: '-1px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <span style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '0.1rem 0.5rem', borderRadius: '4px', fontStyle: 'italic' }}>TOP</span>
               <span style={{ color: 'var(--foreground)', fontStyle: 'italic' }}>tv</span>
               <span style={{ color: 'var(--primary)' }}>+</span>
             </h1>
@@ -24,7 +24,7 @@ export default function Header() {
           <nav style={{ display: 'flex', gap: '2rem', fontWeight: 600, fontSize: '0.85rem', textTransform: 'uppercase', color: '#444', letterSpacing: '0.5px' }}>
             <Link href="/" className="nav-link">Accueil</Link>
             <div className="dropdown-container">
-              <span className="nav-link" style={{ paddingBottom: '1.5rem' }}>Rubriques ▾</span>
+              <span className="nav-link" style={{ paddingBottom: '1rem' }}>Rubriques ▾</span>
               <div className="dropdown-menu" style={{ top: '100%', marginTop: '0.5rem' }}>
                 <Link href="/rubriques/politique" className="dropdown-item">Politique</Link>
                 <Link href="/rubriques/economie" className="dropdown-item">Économie</Link>
