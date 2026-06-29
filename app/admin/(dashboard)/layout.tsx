@@ -2,12 +2,13 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import AdminHeader from '@/components/AdminHeader'
 
-export default function AdminDashboardLayout({
+export default async function AdminDashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const session = cookies().get('admin_session')
+  const cookieStore = await cookies()
+  const session = cookieStore.get('admin_session')
 
   if (!session) {
     redirect('/admin/login')

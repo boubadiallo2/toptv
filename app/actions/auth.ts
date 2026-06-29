@@ -25,7 +25,8 @@ export async function login(formData: FormData) {
   }
 
   // Set secure cookie
-  cookies().set('admin_session', data.id, {
+  const cookieStore = await cookies()
+  cookieStore.set('admin_session', data.id, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     maxAge: 60 * 60 * 24 * 7, // 1 week
@@ -36,6 +37,7 @@ export async function login(formData: FormData) {
 }
 
 export async function logout() {
-  cookies().delete('admin_session')
+  const cookieStore = await cookies()
+  cookieStore.delete('admin_session')
   redirect('/admin/login')
 }
