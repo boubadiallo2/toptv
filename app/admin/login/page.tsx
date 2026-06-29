@@ -1,6 +1,6 @@
 'use client'
 
-import { useFormState } from 'react-dom'
+import { useActionState } from 'react'
 import { login } from '@/app/actions/auth'
 import Link from 'next/link'
 
@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export default function LoginPage() {
-  const [state, formAction] = useFormState(login as any, initialState)
+  const [state, formAction] = useActionState(login as any, initialState)
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0a0a0a', color: 'white', fontFamily: 'sans-serif' }}>
