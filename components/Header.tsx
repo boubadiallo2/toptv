@@ -1,10 +1,16 @@
 "use client";
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
+  const pathname = usePathname();
   const [dateStr, setDateStr] = useState('');
   const [timeStr, setTimeStr] = useState('');
+
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
 
   useEffect(() => {
     const updateTime = () => {
