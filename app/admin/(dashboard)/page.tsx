@@ -4,28 +4,47 @@ import { FileText, CheckSquare, Film, Folder } from 'lucide-react'
 export const revalidate = 0 // Disable cache for the admin dashboard
 
 export default async function AdminDashboardPage() {
-  // Fetch stats
-  const { count: totalArticles } = await supabase.from('articles').select('*', { count: 'exact', head: true })
-  const { count: publishedArticles } = await supabase.from('articles').select('*', { count: 'exact', head: true }).eq('is_featured', true) // assuming published uses is_featured or similar. Let's say all are published for now since there's no status field in schema.
-  const { count: totalMedia } = await supabase.from('media').select('*', { count: 'exact', head: true })
-  const { count: totalCategories } = await supabase.from('categories').select('*', { count: 'exact', head: true })
+  let totalArticles = 0;
+  let publishedArticles = 0;
+  let totalMedia = 0;
+  let totalCategories = 0;
+  let recentArticles: any[] = [];
+  let recentMedia: any[] = [];
 
-  // Fetch recent articles
-  const { data: recentArticles } = await supabase
-    .from('articles')
-    .select(`
-      id, title, author, published_at, 
-      categories ( name, color )
-    `)
-    .order('published_at', { ascending: false })
-    .limit(5)
+  try {
+    // Fetch stats
+    const { count: aCount } = await supabase.from('articles').select('*', { count: 'exact', head: true })
+    const { count: pCount } = await supabase.from('articles').select('*', { count: 'exact', head: true }).eq('is_featured', true)
+    const { count: mCount } = await supabase.from('media').select('*', { count: 'exact', head: true })
+    const { count: cCount } = await supabase.from('categories').select('*', { count: 'exact', head: true })
+    
+    totalArticles = aCount || 0;
+    publishedArticles = pCount || 0;
+    totalMedia = mCount || 0;
+    totalCategories = cCount || 0;
 
-  // Fetch recent media
-  const { data: recentMedia } = await supabase
-    .from('media')
-    .select('*')
-    .order('created_at', { ascending: false })
-    .limit(3)
+    // Fetch recent articles
+    const { data: rArticles } = await supabase
+      .from('articles')
+      .select(`
+        id, title, author, published_at, 
+        categories ( name, color )
+      `)
+      .order('published_at', { ascending: false })
+      .limit(5)
+    recentArticles = rArticles || [];
+
+    // Fetch recent media
+    const { data: rMedia } = await supabase
+      .from('media')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(3)
+    recentMedia = rMedia || [];
+  } catch (error) {
+    console.error("Failed to fetch dashboard data:", error);
+    // Silent fail, use default empty stats
+  }
 
   return (
     <div style={{ maxWidth: '1200px', margin: '0 auto' }}>

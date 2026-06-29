@@ -13,12 +13,20 @@ export async function login(prevState: any, formData: FormData) {
   }
 
   // Check against Supabase admins table
-  const { data, error } = await supabase
-    .from('admins')
-    .select('*')
-    .eq('username', username)
-    .eq('password', password)
-    .single()
+  let data, error;
+  try {
+    const response = await supabase
+      .from('admins')
+      .select('*')
+      .eq('username', username)
+      .eq('password', password)
+      .single()
+    data = response.data;
+    error = response.error;
+  } catch (err) {
+    console.error("Supabase error:", err);
+    return { error: 'Erreur de connexion à la base de données.' }
+  }
 
   if (error || !data) {
     return { error: 'Identifiant ou mot de passe incorrect.' }

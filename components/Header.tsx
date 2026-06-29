@@ -8,7 +8,7 @@ export default function Header() {
   const [dateStr, setDateStr] = useState('');
   const [timeStr, setTimeStr] = useState('');
 
-  if (pathname.startsWith('/admin')) {
+  if (pathname?.startsWith('/admin')) {
     return null;
   }
 
