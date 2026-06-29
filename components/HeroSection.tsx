@@ -1,13 +1,48 @@
+"use client";
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+
+const banners = [
+  { id: 1, title: 'BANNIÈRE PUBLICITAIRE 1', size: '300 × 600 PX — ESPACE A' },
+  { id: 2, title: 'BANNIÈRE PUBLICITAIRE 2', size: '300 × 600 PX — ESPACE B' },
+  { id: 3, title: 'BANNIÈRE PUBLICITAIRE 3', size: '300 × 600 PX — ESPACE C' },
+];
 
 export default function HeroSection() {
+  const [currentBanner, setCurrentBanner] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentBanner((prev) => (prev + 1) % banners.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextBanner = () => setCurrentBanner((prev) => (prev + 1) % banners.length);
+  const prevBanner = () => setCurrentBanner((prev) => (prev - 1 + banners.length) % banners.length);
+
   return (
     <section className="container" style={{ marginTop: '2rem' }}>
       
-      {/* Banner Ad */}
-      <div style={{ backgroundColor: '#e0e0d8', padding: '6rem 2rem', textAlign: 'center', marginBottom: '2rem', borderRadius: '4px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <p style={{ letterSpacing: '2px', fontSize: '1.3rem', fontWeight: 'bold', color: 'var(--muted)' }}>BANNIÈRE PUBLICITAIRE 3</p>
-        <p style={{ color: '#888', fontSize: '0.9rem', marginTop: '0.5rem' }}>300 × 600 PX — ESPACE C</p>
+      {/* Banner Carousel */}
+      <div style={{ position: 'relative', backgroundColor: '#e0e0d8', padding: '6rem 2rem', textAlign: 'center', marginBottom: '2rem', borderRadius: '4px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        
+        {/* Navigation Buttons */}
+        <button onClick={prevBanner} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', backgroundColor: 'white', border: '1px solid #ccc', borderRadius: '2px', width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '1rem', color: '#666' }}>‹</button>
+        <button onClick={nextBanner} style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', backgroundColor: 'white', border: '1px solid #ccc', borderRadius: '2px', width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '1rem', color: '#666' }}>›</button>
+
+        {/* Content */}
+        <div>
+          <p style={{ letterSpacing: '2px', fontSize: '1.3rem', fontWeight: 'bold', color: 'var(--muted)' }}>{banners[currentBanner].title}</p>
+          <p style={{ color: '#888', fontSize: '0.9rem', marginTop: '0.5rem' }}>{banners[currentBanner].size}</p>
+        </div>
+
+        {/* Dots */}
+        <div style={{ position: 'absolute', bottom: '1rem', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '6px' }}>
+          {banners.map((_, idx) => (
+            <div key={idx} onClick={() => setCurrentBanner(idx)} style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: currentBanner === idx ? '#444' : '#bbb', cursor: 'pointer', transition: 'background-color 0.3s' }} />
+          ))}
+        </div>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '2rem' }}>
