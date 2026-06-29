@@ -3,7 +3,6 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import RadioPlayer from "@/components/RadioPlayer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,11 +28,10 @@ export default function RootLayout({
     <html lang="fr" className={`${inter.variable} ${playfair.variable}`}>
       <body>
         <Header />
-        <main style={{ minHeight: '60vh', paddingBottom: '80px' }}>
+        <main style={{ minHeight: '60vh' }}>
           {children}
         </main>
         <Footer />
-        <RadioPlayer />
       </body>
     </html>
   );
