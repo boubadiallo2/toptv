@@ -5,8 +5,8 @@ export default function HeroSection() {
     <section className="container" style={{ marginTop: '2rem' }}>
       
       {/* Banner Ad */}
-      <div style={{ backgroundColor: '#e0e0d8', padding: '3rem', textAlign: 'center', marginBottom: '2rem', borderRadius: '4px' }}>
-        <p style={{ letterSpacing: '2px', fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--muted)' }}>BANNIÈRE PUBLICITAIRE 3</p>
+      <div style={{ backgroundColor: '#e0e0d8', padding: '6rem 2rem', textAlign: 'center', marginBottom: '2rem', borderRadius: '4px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <p style={{ letterSpacing: '2px', fontSize: '1.3rem', fontWeight: 'bold', color: 'var(--muted)' }}>BANNIÈRE PUBLICITAIRE 3</p>
         <p style={{ color: '#888', fontSize: '0.9rem', marginTop: '0.5rem' }}>300 × 600 PX — ESPACE C</p>
       </div>
 
